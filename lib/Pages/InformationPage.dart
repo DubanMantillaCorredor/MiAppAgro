@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Controllers/InformationController.dart';
+import '../Resources/LabelConfiguration.dart';
+import 'PartialPage/AppBarPartialPage.dart';
 
 class InformationPage extends StatefulWidget {
   final InformationController controller;
@@ -11,9 +13,14 @@ class InformationPage extends StatefulWidget {
 }
 
 class _InformationPageState extends State<InformationPage> {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: ListView(
+        children: [
+          AppBarPage(LabelConfiguration.information_title_appbar, context)
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Controllers/MyFarmingController.dart';
+import '../Resources/LabelConfiguration.dart';
+import 'PartialPage/AppBarPartialPage.dart';
 
 class MyFarmingPage extends StatefulWidget {
   final MyFarmingController controller;
@@ -14,6 +16,12 @@ class _MyFarmingPageState extends State<MyFarmingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: ListView(
+        children: [
+          AppBarPage(LabelConfiguration.myfarming_title_appbar, context)
+        ],
+      ),
+    );
   }
 }

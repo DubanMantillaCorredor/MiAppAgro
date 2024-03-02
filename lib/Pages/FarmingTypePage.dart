@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Controllers/FarmingTypeController.dart';
+import 'PartialPage/AppBarPartialPage.dart';
 
 class FarmingTypePage extends StatefulWidget {
   final FarmingTypeController controller;
@@ -14,6 +15,8 @@ class _FarmingTypePageState extends State<FarmingTypePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Container(),
+    );
   }
 }
