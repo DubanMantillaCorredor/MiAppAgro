@@ -8,7 +8,8 @@ import 'Controllers/HomeController.dart';
 import 'Controllers/InformationController.dart';
 import 'Controllers/InitController.dart';
 import 'Controllers/LoginController.dart';
-import 'Controllers/MyFarmingController.dart';
+import 'Controllers/MyFarming/CultivationDiaryController.dart';
+import 'Controllers/MyFarming/MyFarmingController.dart';
 import 'Controllers/RegisterController.dart';
 import 'Pages/CalculateFertilizerPage.dart';
 import 'Pages/FarmingTypePage.dart';
@@ -18,7 +19,8 @@ import 'Pages/HomePage.dart';
 import 'Pages/InformationPage.dart';
 import 'Pages/InitPage.dart';
 import 'Pages/LoginPage.dart';
-import 'Pages/MyFarmingPage.dart';
+import 'Pages/MyFarming/CultivationDiaryPage.dart';
+import 'Pages/MyFarming/MyFarmingPage.dart';
 import 'Pages/RegisterPage.dart';
 
 void main() {
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
                 ),
               )),
         ),
-        initialRoute: '/',
+        initialRoute: '/home',
         routes: {
           '/': (context) => InitPage(controller: InitController()),
           '/login': (context) => LoginPage(controller: LoginController()),
@@ -58,6 +60,8 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomePage(controller: HomeController()),
           '/myFarming': (context) =>
               MyFarmingPage(controller: MyFarmingController()),
+          '/myFarming/cultivationDiary': (context) =>
+              CultivationDiaryPage(controller: CultivationDiaryController()),
           '/fieldDiary ': (context) =>
               FieldDiaryPage(controller: FieldDiaryController()),
           '/calculateFertilizer': (context) => CalculateFertilizerPage(controller: CalculateFertilizerController()),
