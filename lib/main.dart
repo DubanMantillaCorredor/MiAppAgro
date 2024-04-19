@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xFFE2F3F0),
+          scaffoldBackgroundColor: const Color(0xFFE2F3F0),
           useMaterial3: true,
           inputDecorationTheme: InputDecorationTheme(
               filled: true,
@@ -44,9 +44,7 @@ class MyApp extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.red, width: 1
-                ),
+                borderSide: BorderSide(color: Colors.red, width: 1),
               )),
         ),
         initialRoute: '/',
@@ -58,15 +56,17 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomePage(controller: HomeController()),
           '/myFarming': (context) =>
               MyFarmingPage(controller: MyFarmingController()),
-          '/fieldDiary ': (context) =>
+          '/fieldDiary': (context) =>
               FieldDiaryPage(controller: FieldDiaryController()),
-          '/calculateFertilizer': (context) => CalculateFertilizerPage(controller: CalculateFertilizerController()),
-          '/information': (context) =>
+          '/calculateFertilizer': (context) => CalculateFertilizerPage(
+              controller: CalculateFertilizerController()),
+                    '/information': (context) =>
               InformationPage(controller: InformationController()),
-          '/farmingType ': (context) =>
+          '/farmingType': (context) =>
               FarmingTypePage(controller: FarmingTypeController()),
-          '/farmingType ': (context) =>
+          '/fertilizerType': (context) =>
               FertilizerTypePage(controller: FertilizerTypeController()),
-        });
+        }
+    );
   }
 }
