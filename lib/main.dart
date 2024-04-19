@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Mi Agro App',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xFFE2F3F0),
           useMaterial3: true,
@@ -46,9 +47,7 @@ class MyApp extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.red, width: 1
-                ),
+                borderSide: BorderSide(color: Colors.red, width: 1),
               )),
         ),
         initialRoute: '/home',
@@ -64,7 +63,8 @@ class MyApp extends StatelessWidget {
               CultivationDiaryPage(controller: CultivationDiaryController()),
           '/fieldDiary ': (context) =>
               FieldDiaryPage(controller: FieldDiaryController()),
-          '/calculateFertilizer': (context) => CalculateFertilizerPage(controller: CalculateFertilizerController()),
+          '/calculateFertilizer': (context) => CalculateFertilizerPage(
+              controller: CalculateFertilizerController()),
           '/information': (context) =>
               InformationPage(controller: InformationController()),
           '/farmingType ': (context) =>
