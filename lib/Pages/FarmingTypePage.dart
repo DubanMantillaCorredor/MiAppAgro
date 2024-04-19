@@ -1,22 +1,140 @@
 import 'package:flutter/material.dart';
+import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
+import 'package:mi_agro_app/Resources/WidgetStyles.dart';
 import '../Controllers/FarmingTypeController.dart';
-import 'PartialPage/AppBarPartialPage.dart';
 
 class FarmingTypePage extends StatefulWidget {
   final FarmingTypeController controller;
 
-  const FarmingTypePage({super.key, required this.controller});
+  const FarmingTypePage({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<FarmingTypePage> createState() => _FarmingTypePageState();
 }
 
 class _FarmingTypePageState extends State<FarmingTypePage> {
+  // Función para mostrar la tarjeta con el título y la descripción
+  void _showInfoDialog(String title, String description) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(description),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cerrar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Tipos De Cultivos")),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                  height: 120,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      _showInfoDialog(
+                        "Requerimientos Nutricionales Papa",
+                        "Nutriente\t           Rango(kg/ha)\n"
+                        "Nitrógeno (N)\t         350\n"
+                        "Fósforo (P)(P2O5)\t     150\n"
+                        "Potasio (K)\t           350\n"
+                        "Calcio (Ca)/(CaO)\t     150\n"
+                        "Magnesio (Mg)\t         70\n"
+                        "Azufre (S)\t            70\n"
+                        "PROFUNDIDAD DE CULTIVO    0.25 m.",
+                      );
+                    },
+                    style: WidgetStyles.ButtonTypeFarming,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/Resources/Images/Cultivo Papa.png',
+                          height: 70,
+                          width: 70,
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          "Cultivo de Papa",
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                        const SizedBox(height: 5),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                  height: 120,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      _showInfoDialog(
+                        "Requerimientos Nutricionales Cebolla Cabezona",
+                        "Nutriente\t           Rango(kg/ha)\n"
+                        "Nitrógeno (N)\t        	200\n"
+                        "Fósforo (P)(P2O5)\t	    150\n"
+                        "Potasio (K)\t          	200\n"
+                        "Calcio (Ca)(CaO)\t	      100\n"
+                        "Magnesio (Mg)\t	        70\n"
+                        "Azufre (S)\t           	30\n",
+                      );
+                    },
+                    style: WidgetStyles.ButtonTypeFarming,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/Resources/Images/Cultivo Cebolla.png',
+                          height: 70,
+                          width: 70,
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          "Cultivo de Cebolla",
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                        const SizedBox(height: 5),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
+
