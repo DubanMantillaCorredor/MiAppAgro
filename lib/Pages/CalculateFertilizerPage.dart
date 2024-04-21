@@ -25,6 +25,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
   late double fertilizerDensity;
   late String selectedCropText;
   late Calculator? selectedCalculator;
+
   final Map<String, double> nutrientValues = {
     'Nitrogeno': 0.0,
     'Fosforo': 0.0,
@@ -159,6 +160,13 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
               ElevatedButton(
                 onPressed: isDataComplete()
                     ? () {
+                        double nitrogenValue = calculateNitrogen(
+                          nutrientValues['Nitrogeno'] ?? 0.0,
+                          fertilizerDensity,
+                          selectedCalculator!.produndidadCultivo,
+                        );
+                        print('Valor del nitrógeno calculado: $nitrogenValue');
+
                         final String cropInfo =
                             '$selectedCropText, Profundidad del cultivo: ${selectedCalculator!.produndidadCultivo}';
                         print(cropInfo);
@@ -184,6 +192,14 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
         )
       ]),
     );
+  }
+
+  double calculateNitrogen(double userNitrogenInput, double userDensityInput,
+      double selectedCropDepth) {
+    double baseNitrogenValue = selectedCalculator?.nitrogeno ?? 0.0;
+    double result = baseNitrogenValue -
+        (userNitrogenInput * userDensityInput * selectedCropDepth * 1000);
+    return result;
   }
 
   bool isDataComplete() {
