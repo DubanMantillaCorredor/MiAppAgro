@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mi_agro_app/Models/Calculador/Calculator.dart';
+import 'package:mi_agro_app/Models/Calculador/GeneralCropCalculator.dart';
 import 'package:mi_agro_app/Pages/PartialPage/AppBarPartialPage.dart';
+import 'package:mi_agro_app/Pages/ResultsScreen.dart';
 import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
 import '../Controllers/CalculateFertilizerController.dart';
-import '../Models/Calculador/CebollaCalculadora.dart';
-import '../Models/Calculador/PapaCalculadora.dart';
-// import '../Resources/LabelConfiguration.dart';
-// import '../Resources/WidgetStyles.dart';
-// import 'PartialPage/AppBarPartialPage.dart';
-// import 'ViewConfiguration.dart';
 
 class CalculateFertilizerPage extends StatefulWidget {
   final CalculateFertilizerController controller;
@@ -135,7 +130,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
               const SizedBox(height: 16.0),
               DropdownButton<double>(
                 value: selectedCalculator
-                    ?.produndidadCultivo, // Valor del DropdownButton
+                    ?.profundidadCultivo, // Valor del DropdownButton
                 onChanged: (value) {
                   setState(() {
                     selectedCalculator = value == null
@@ -163,18 +158,31 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
                         double nitrogenValue = calculateNitrogen(
                           nutrientValues['Nitrogeno'] ?? 0.0,
                           fertilizerDensity,
-                          selectedCalculator!.produndidadCultivo,
+                          selectedCalculator!.profundidadCultivo,
                         );
-                        print('Valor del nitrógeno calculado: $nitrogenValue');
 
-                        final String cropInfo =
-                            '$selectedCropText, Profundidad del cultivo: ${selectedCalculator!.produndidadCultivo}';
-                        print(cropInfo);
-
+                        Map<String, double> calculatedNutrients = {};
                         nutrientValues.forEach((key, value) {
-                          print('$key: $value');
+                          double? nutrientValue = calculateNutrient(
+                            value,
+                            fertilizerDensity,
+                            selectedCalculator!.profundidadCultivo,
+                            selectedCalculator!.nutrientValues[key] ?? 0.0,
+                            key,
+                          );
+                          if (nutrientValue != null) {
+                            calculatedNutrients[key] = nutrientValue;
+                          }
                         });
-                        print('Densidad: $fertilizerDensity');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultsScreen(
+                              nitrogenValue: nitrogenValue,
+                              nutrientValues: calculatedNutrients,
+                            ),
+                          ),
+                        );
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
@@ -196,10 +204,25 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   double calculateNitrogen(double userNitrogenInput, double userDensityInput,
       double selectedCropDepth) {
-    double baseNitrogenValue = selectedCalculator?.nitrogeno ?? 0.0;
+    double baseNitrogenValue =
+        selectedCalculator?.nutrientValues['Nitrogeno'] ?? 0.0;
     double result = baseNitrogenValue -
         (userNitrogenInput * userDensityInput * selectedCropDepth * 1000);
     return result;
+  }
+
+  double? calculateNutrient(double userInput, double userDensityInput,
+      double selectedCropDepth, double baseNutrientValue, String nutrientName) {
+    if (nutrientName == 'Nitrogeno') {
+      return null;
+    } else {
+      double result = baseNutrientValue -
+          (userInput * userDensityInput * selectedCropDepth * 10);
+      if (result < 0) {
+        result = 0;
+      }
+      return result;
+    }
   }
 
   bool isDataComplete() {
