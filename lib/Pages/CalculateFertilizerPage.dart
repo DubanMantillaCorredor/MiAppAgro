@@ -131,8 +131,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
               ),
               const SizedBox(height: 16.0),
               DropdownButton<double>(
-                value: selectedCalculator
-                    ?.profundidadCultivo, // Valor del DropdownButton
+                value: selectedCalculator?.profundidadCultivo,
                 onChanged: (value) {
                   setState(() {
                     selectedCalculator = value == null
@@ -141,8 +140,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
                             calculator['value'] == value)['calculator'];
                     selectedCropText = selectedCalculator == null
                         ? 'Seleccionar cultivo'
-                        : selectedCalculator
-                            .toString(); // Actualizar el texto del cultivo seleccionado
+                        : selectedCalculator.toString();
                   });
                 },
                 items: calculators
@@ -154,59 +152,6 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
                     .toList(),
               ),
               const SizedBox(height: 16.0),
-              // ElevatedButton(
-              //   onPressed: isDataComplete()
-              //       ? () {
-              //           // Calcular el valor de nitrógeno
-              //           double nitrogenValue = calculateNitrogen(
-              //             nutrientValues['Nitrogeno'] ?? 0.0,
-              //             fertilizerDensity,
-              //             selectedCalculator!.profundidadCultivo,
-              //           );
-
-              //           // Calcular valores de otros nutrientes
-              //           Map<String, double> calculatedNutrients = {};
-              //           nutrientValues.forEach((key, value) {
-              //             double? nutrientValue = calculateNutrient(
-              //               value,
-              //               fertilizerDensity,
-              //               selectedCalculator!.profundidadCultivo,
-              //               selectedCalculator!.nutrientValues[key] ?? 0.0,
-              //               key,
-              //             );
-              //             if (nutrientValue != null) {
-              //               calculatedNutrients[key] = nutrientValue;
-              //             }
-              //           });
-
-              //           // Imprimir resultados por consola
-              //           print('Valor de nitrógeno: $nitrogenValue');
-              //           calculatedNutrients.forEach((key, value) {
-              //             print('Valor de $key: $value');
-              //           });
-
-              //           // Navegar a la pantalla de resultados
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //               builder: (context) => ResultsScreen(
-              //                 nitrogenValue: nitrogenValue,
-              //                 nutrientValues: calculatedNutrients,
-              //               ),
-              //             ),
-              //           );
-              //         }
-              //       : null,
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.blue,
-              //     padding: const EdgeInsets.symmetric(vertical: 16.0),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              //   child: const Text('Calcular',
-              //       style: TextStyle(color: Colors.white)),
-              // ),
               ElevatedButton(
                 onPressed: isDataComplete() ? calcularYMostrarResultados : null,
                 style: ElevatedButton.styleFrom(
@@ -269,18 +214,15 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
   }
 
   void calcularYMostrarResultados() {
-    // Calcular el valor de nitrógeno
     double nitrogenValue = calculateNitrogen(
       nutrientValues['Nitrogeno'] ?? 0.0,
       fertilizerDensity,
       selectedCalculator!.profundidadCultivo,
     );
 
-    // Realizar operaciones adicionales con el valor de nitrógeno
     double modifiedNitrogenValue =
         realizarOperacion('Nitrogeno', nitrogenValue);
 
-    // Calcular valores de otros nutrientes y realizar operaciones adicionales si es necesario
     Map<String, double> calculatedNutrients = {};
     nutrientValues.forEach((key, value) {
       double? nutrientValue = calculateNutrient(
@@ -291,19 +233,16 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
         key,
       );
       if (nutrientValue != null) {
-        // Realizar operaciones adicionales según el nutriente
         double modifiedNutrientValue = realizarOperacion(key, nutrientValue);
         calculatedNutrients[key] = modifiedNutrientValue;
       }
     });
 
-    // Imprimir resultados por consola
     print('Valor de nitrógeno modificado: $modifiedNitrogenValue');
     calculatedNutrients.forEach((key, value) {
       print('Valor de $key modificado: $value');
     });
 
-    // Navegar a la pantalla de resultados
     Navigator.push(
       context,
       MaterialPageRoute(
