@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../Controllers/MyFarmingController.dart';
+import 'package:mi_agro_app/Controllers/MyFarming/MyFarmingController.dart';
 import '../Resources/LabelConfiguration.dart';
 import 'PartialPage/AppBarPartialPage.dart';
 
