@@ -67,6 +67,8 @@ flutter:
     - lib/Resources/Images/arrow_left.png
     - lib/Resources/Images/tractor.png
     - lib/Resources/Images/pencil.png
+    - lib/Resources/Images/onion.png
+    - lib/Resources/Images/potato.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

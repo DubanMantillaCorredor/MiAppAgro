@@ -18,12 +18,19 @@ class CultivationDiaryPage extends StatefulWidget {
 
 class _CultivationDiaryPageState extends State<CultivationDiaryPage> {
 
+  late String id = "";
+  late String title = "";
+
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
+    this.id = arguments['id'];
+    this.title = arguments['title'];
+
     return Scaffold(
       body: Column(
         children: [
-          AppBarPage(LabelConfiguration.myfarming_Cultivation_diary_title_appbar, context),
+          AppBarPage(title, context),
           Expanded(child: ListView(
             children: [
               myNoteCard()
@@ -36,7 +43,15 @@ class _CultivationDiaryPageState extends State<CultivationDiaryPage> {
                 width: double.maxFinite,
                 margin: EdgeInsets.all(ViewConfiguration.PaddingContainer),
                 child: ElevatedButton(
-                    onPressed: null,
+                    onPressed: (){
+                      Navigator.pushNamed(
+                          context, '/formNote',
+                          arguments: {
+                            "id": id,
+                            "title": title
+                          }
+                      );
+                    },
                     style: WidgetStyles.ButtonSynchronize,
                     child: Text(LabelConfiguration.myfarming_Cultivation_diary_new_note_button)),
               )

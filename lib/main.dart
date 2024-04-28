@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mi_agro_app/Controllers/CalculateFertilizerController.dart';
+import 'package:mi_agro_app/Controllers/MyFarming/FormNoteComtroller.dart';
+import 'package:mi_agro_app/Pages/MyFarming/FormNotePage.dart';
 
 import 'Controllers/FarmingTypeController.dart';
 import 'Controllers/FertilizerTypeController.dart';
@@ -59,9 +61,9 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomePage(controller: HomeController()),
           '/myFarming': (context) =>
               MyFarmingPage(controller: MyFarmingController()),
-          '/myFarming/cultivationDiary': (context) =>
+          '/cultivationDiary': (context) =>
               CultivationDiaryPage(controller: CultivationDiaryController()),
-          '/fieldDiary ': (context) =>
+          '/fieldDiary': (context) =>
               FieldDiaryPage(controller: FieldDiaryController()),
           '/calculateFertilizer': (context) => CalculateFertilizerPage(
               controller: CalculateFertilizerController()),
@@ -69,8 +71,10 @@ class MyApp extends StatelessWidget {
               InformationPage(controller: InformationController()),
           '/farmingType ': (context) =>
               FarmingTypePage(controller: FarmingTypeController()),
-          '/farmingType ': (context) =>
+          '/farmingType': (context) =>
               FertilizerTypePage(controller: FertilizerTypeController()),
+          '/formNote': (context) =>
+              FormNotesPage(controller: FormNoteController()),
         });
   }
 }

@@ -12,4 +12,5 @@ class LabelConfiguration{
   static String calculatefertilizer_ppm_amount = "Cantidad ppm";
   static String calculatefertilizer_it_is_oxidation = "Es oxidada";
   static String myFarming_create_new_farming_button = "Crear cultivo";
+  static String save_button = "Guardar";
 }

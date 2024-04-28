@@ -21,69 +21,52 @@ class _MyFarmingPageState extends State<MyFarmingPage> {
       body: Column(
         children: [
           AppBarPage(LabelConfiguration.myfarming_title_appbar, context),
-          Expanded(child: ListView(
+          Expanded(
+              child: ListView(
             children: [
-              myFarmingCard()
+              Row(
+                children: [
+                  Expanded(
+                      child: farmingCard(
+                          "Papa",
+                          "lib/Resources/Images/potato.png",
+                          "31bfea98-78cf-4515-9e8d-270db6a51641")),
+                  Expanded(
+                      child: farmingCard(
+                          "Cebola",
+                          "lib/Resources/Images/onion.png",
+                          "a455ac77-03e6-4ae7-9dde-a1206850bd6a")),
+                ],
+              )
             ],
           )),
-          Container(
-            height: 60,
-            width: double.maxFinite,
-            margin: EdgeInsets.all(ViewConfiguration.PaddingContainer),
-            child: ElevatedButton(
-                onPressed: null,
-                style: WidgetStyles.ButtonSynchronize,
-                child: Text(LabelConfiguration.myFarming_create_new_farming_button)),
-          )
         ],
       ),
     );
   }
 
-  Widget myFarmingCard() {
-    double imageSize = 50;
-    return InkWell(
-      onTap: (){
-        print(3);
-        Navigator.pushNamed(context, '/myFarming/cultivationDiary');
-      },
-      child: Card(
-        margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
-        color: Colors.green.shade900,
-        child: Row(
-          children: [
-            SizedBox(width: 10),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(10),
-                //height: 200,
-                color: Colors.white,
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset("lib/Resources/Images/tractor.png", height: imageSize, width: imageSize),
-                        SizedBox(width: 10),
-                        const Text("Cultivo",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green))
-                      ],
-                    ),
-                    const Text("Fecha",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey)),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+  Widget farmingCard(String title, String image, String id) {
+    return Card(
+      color: Colors.white,
+      child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(
+                context, '/cultivationDiary',
+                arguments: {
+                  "id": id,
+                  "title": title
+                }
+            );
+          },
+          child: Container(
+            height: 200,
+            padding: EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [Text(title), SizedBox(height: 10), Image.asset(image)],
+            ),
+          )),
     );
   }
 }

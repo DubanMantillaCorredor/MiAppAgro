@@ -34,3 +34,4 @@ Widget AppBarPage(String title, BuildContext context){
     ],
   );
 }
+
