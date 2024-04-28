@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mi_agro_app/Controllers/FertilizerTypeController.dart';
 import 'package:mi_agro_app/Models/Calculador/Nutrientes.dart';
 import 'package:mi_agro_app/Resources/WidgetStyles.dart';
-import '../Controllers/FarmingTypeController.dart';
-import '../Models/Calculador/Nutrientes.dart';
 
 class FertilizerTypePage extends StatefulWidget {
   final FertilizerTypeController controller;
@@ -11,10 +9,17 @@ class FertilizerTypePage extends StatefulWidget {
   const FertilizerTypePage({Key? key, required this.controller}) : super(key: key);
 
   @override
+<<<<<<< HEAD
   State<FertilizerTypePage> createState() => _FertilizerTypePageState();
 }
 
 class _FertilizerTypePageState extends State<FertilizerTypePage> {
+=======
+  State<FertilizerTypePage> createState() => _FarmingTypePageState();
+}
+
+class _FarmingTypePageState extends State<FertilizerTypePage> {
+>>>>>>> 1246c07386dcfd282af392e010252478d5244660
   // Lista de productos
   List<Productos> productos = [
     Urea(),

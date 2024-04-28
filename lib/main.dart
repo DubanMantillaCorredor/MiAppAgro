@@ -22,7 +22,10 @@ import 'Pages/MyFarming/MyFarmingPage.dart';
 import 'Pages/RegisterPage.dart';
 import 'Pages/FertilizerTypePage.dart';
 import 'Pages/FarmingTypePage.dart';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1246c07386dcfd282af392e010252478d5244660
 
 void main() {
   runApp(const MyApp());
@@ -65,13 +68,10 @@ class MyApp extends StatelessWidget {
               FieldDiaryPage(controller: FieldDiaryController()),
           '/calculateFertilizer': (context) => CalculateFertilizerPage(
               controller: CalculateFertilizerController()),
-                    '/information': (context) =>
+          '/information': (context) =>
               InformationPage(controller: InformationController()),
-          '/farmingType': (context) =>
-              FarmingTypePage(controller: FarmingTypeController()),
-          '/fertilizerType': (context) =>
-              FertilizerTypePage(controller: FertilizerTypeController()),
-        }
-    );
+          '/farmingType': (context) => FarmingTypePage(controller: FarmingTypeController()),
+          '/fertilizerType': (context) => FertilizerTypePage(controller: FertilizerTypeController())
+        });
   }
 }
