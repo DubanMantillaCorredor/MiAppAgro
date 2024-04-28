@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mi_agro_app/Controllers/CalculateFertilizerController.dart';
 
-import 'Controllers/FarmingTypeController.dart';
 import 'Controllers/FertilizerTypeController.dart';
 import 'Controllers/FieldDiaryController.dart';
 import 'Controllers/HomeController.dart';
@@ -11,9 +10,8 @@ import 'Controllers/LoginController.dart';
 import 'Controllers/MyFarming/CultivationDiaryController.dart';
 import 'Controllers/MyFarming/MyFarmingController.dart';
 import 'Controllers/RegisterController.dart';
+import 'Controllers/FarmingTypeController.dart';
 import 'Pages/CalculateFertilizerPage.dart';
-import 'Pages/FarmingTypePage.dart';
-import 'Pages/FertilizerTypePage.dart';
 import 'Pages/FieldDiaryPage.dart';
 import 'Pages/HomePage.dart';
 import 'Pages/InformationPage.dart';
@@ -22,6 +20,8 @@ import 'Pages/LoginPage.dart';
 import 'Pages/MyFarming/CultivationDiaryPage.dart';
 import 'Pages/MyFarming/MyFarmingPage.dart';
 import 'Pages/RegisterPage.dart';
+import 'Pages/FertilizerTypePage.dart';
+import 'Pages/FarmingTypePage.dart';
 
 
 void main() {

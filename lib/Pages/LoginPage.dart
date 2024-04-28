@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          FocusScope.of(context).unfocus(); // Oculta el teclado cuando se toca fuera de un campo de texto
+          FocusScope.of(context).unfocus(); //ocultar teclado
         },
         child: SingleChildScrollView(
           child: Column(
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 onPressed: () {
-                  FocusScope.of(context).unfocus(); // Oculta el teclado cuando se presiona el botón
+                  FocusScope.of(context).unfocus(); // Oculta el teclado 
                   Navigator.pushNamed(context, '/register');
                 },
               ),

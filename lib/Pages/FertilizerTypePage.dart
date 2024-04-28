@@ -25,7 +25,6 @@ class _FertilizerTypePageState extends State<FertilizerTypePage> {
     VolcanS90(),
   ];
 
-  // Función para mostrar la tarjeta con el título y la descripción
   void _showInfoDialog(String title, String description) {
     showDialog(
       context: context,
@@ -67,17 +66,20 @@ class _FertilizerTypePageState extends State<FertilizerTypePage> {
               children: productos.map((producto) {
                 return Container(
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                  height: 120,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      FocusScope.of(context).unfocus();
-                      _showInfoDialog(
-                        producto.titulo,
-                        producto.descripcion,
-                      );
-                    },
-                    child: Text(producto.titulo),
-                    style: WidgetStyles.ButtonGreenColor,
+                  child: SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FocusScope.of(context).unfocus();
+                        _showInfoDialog(
+                          producto.titulo,
+                          producto.descripcion,
+                        );
+                      },
+                      child: Text(producto.titulo),
+                      style: WidgetStyles.ButtonGreenColor,
+                    ),
                   ),
                 );
               }).toList(),
