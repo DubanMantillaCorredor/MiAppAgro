@@ -14,4 +14,12 @@ class LabelConfiguration{
   static String myFarming_create_new_farming_button = "Crear cultivo";
   static String save_button = "Guardar";
   static String delete_button = "Borrar";
+  static String init_Pages_Ini_Sesion = "Inicio de sesión";
+  static String init_Pages_Register = "Registrarse";
+  static String information_Types_crops = "Tipos de Cultivos";
+  static String information_Fertilizer = "Fertilizantes ";
+  static String information_Instructions = "Instructivo ";
+  static String information_Potato_Farming = "Cultivo de papa ";
+  static String information_Onion_Farming = "Cultivo de cebolla ";
+  static String myFarming_create_new_farming_button = "Error";
 }

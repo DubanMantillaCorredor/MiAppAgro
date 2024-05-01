@@ -53,7 +53,9 @@ class MyApp extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 1),
+                borderSide: BorderSide(
+                    color: Colors.red, width: 1
+                ),
               )),
         ),
         initialRoute: '/home',

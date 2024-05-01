@@ -41,6 +41,7 @@ dependencies:
   path: ^1.8.3
   uuid: ^4.2.2
   intl: ^0.19.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,10 @@ flutter:
     - lib/Resources/Images/onion.png
     - lib/Resources/Images/potato.png
     - lib/Resources/Images/trash.png
+    - lib/Resources/Images/FondoInicio.jpg
+    - lib/Resources/Images/User.png
+    - lib/Resources/Images/Cultivo Papa.png
+    - lib/Resources/Images/Cultivo Cebolla.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
