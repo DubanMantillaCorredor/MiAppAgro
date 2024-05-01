@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mi_agro_app/Pages/algo.dart';
 import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
 import 'package:mi_agro_app/Resources/WidgetStyles.dart';
 import '../Controllers/RegisterController.dart';
@@ -14,6 +15,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  final _nombreController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -62,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 TextFormField(
-                  controller: _emailController,
+                  controller: _nombreController,
                   decoration: const InputDecoration(
                     labelText: 'Ingresa tu nombre',
                     fillColor: Colors.transparent,
@@ -80,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese su correo electrónico';
+                      return 'Por favor, ingresa tu nombre';
                     }
                     return null;
                   },
@@ -191,17 +193,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 40),
                 Container(
-                margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                height: 60,
-                child: ElevatedButton(
-                onPressed: () {
-                  FocusScope.of(context).unfocus(); 
-                  Navigator.pushNamed(context, '');
-                },
-                style: WidgetStyles.ButtonGreenColor,
-                child: Text(LabelConfiguration.init_Pages_Register),
-              ),
-              ),
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                  height: 60,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // FocusScope.of(context).unfocus();
+                      // Navigator.pushNamed(context, '/login');
+                      myFunction();
+                    },
+                    style: WidgetStyles.ButtonGreenColor,
+                    child: Text(LabelConfiguration.init_Pages_Register),
+                  ),
+                ),
                 const SizedBox(height: 20),
               ],
             ),

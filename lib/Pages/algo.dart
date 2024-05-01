@@ -1,17 +1,18 @@
-import 'package:mi_agro_app/api/AuthAPI.dart'; // Asegúrate de importar el paquete necesario
+import 'package:mi_agro_app/api/RegisAPI.dart'; 
 
 Future<void> myFunction() async {
-  final authAPI = AuthAPI(); // Instancia de la clase AuthAPI
-  const email = 'frenando40@hotmail.com';
+  final registerAPI = RegisterAPI(); // Instancia de la clase RegisterAPI
+  const nombre = 'Daniel Garcia';
+  const email = 'dg@gmail.com';
   const password = '123456';
 
   try {
-    final response = await authAPI.login(email, password);
+    final response = await registerAPI.register(nombre, email, password);
     if (response.statusCode == 200) {
-      print('Inicio de sesión exitoso: ${response.body}');
-      // Aquí puedes realizar acciones adicionales después del inicio de sesión exitoso
+      print('Registro exitoso: ${response.body}');
+      // Aquí puedes realizar acciones adicionales después del registro exitoso
     } else {
-      print('Error en el inicio de sesión: ${response.statusCode} - ${response.body}');
+      print('Error en el registro: ${response.statusCode} - ${response.body}');
     }
   } catch (e) {
     print('Error al realizar la solicitud: $e');
