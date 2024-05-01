@@ -9,17 +9,10 @@ class FertilizerTypePage extends StatefulWidget {
   const FertilizerTypePage({Key? key, required this.controller}) : super(key: key);
 
   @override
-<<<<<<< HEAD
   State<FertilizerTypePage> createState() => _FertilizerTypePageState();
 }
 
 class _FertilizerTypePageState extends State<FertilizerTypePage> {
-=======
-  State<FertilizerTypePage> createState() => _FarmingTypePageState();
-}
-
-class _FarmingTypePageState extends State<FertilizerTypePage> {
->>>>>>> 1246c07386dcfd282af392e010252478d5244660
   // Lista de productos
   List<Productos> productos = [
     Urea(),
@@ -48,7 +41,7 @@ class _FarmingTypePageState extends State<FertilizerTypePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cerrar'),
+              child: const Text('Cerrar'),
             ),
           ],
         );

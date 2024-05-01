@@ -22,10 +22,6 @@ import 'Pages/MyFarming/MyFarmingPage.dart';
 import 'Pages/RegisterPage.dart';
 import 'Pages/FertilizerTypePage.dart';
 import 'Pages/FarmingTypePage.dart';
-<<<<<<< HEAD
-
-=======
->>>>>>> 1246c07386dcfd282af392e010252478d5244660
 
 void main() {
   runApp(const MyApp());

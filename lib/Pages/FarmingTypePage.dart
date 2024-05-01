@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
 import 'package:mi_agro_app/Resources/WidgetStyles.dart';
 import '../Controllers/FarmingTypeController.dart';
 
@@ -32,7 +31,7 @@ class _FarmingTypePageState extends State<FarmingTypePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cerrar'),
+              child: const Text('Cerrar'),
             ),
           ],
         );
@@ -82,9 +81,9 @@ class _FarmingTypePageState extends State<FarmingTypePage> {
                           width: 70,
                         ),
                         const SizedBox(height: 5),
-                        Text(
+                        const Text(
                           "Cultivo de Papa",
-                          style: const TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20),
                         ),
                         const SizedBox(height: 5),
                       ],
@@ -120,9 +119,9 @@ class _FarmingTypePageState extends State<FarmingTypePage> {
                           width: 70,
                         ),
                         const SizedBox(height: 5),
-                        Text(
+                        const Text(
                           "Cultivo de Cebolla",
-                          style: const TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20),
                         ),
                         const SizedBox(height: 5),
                       ],

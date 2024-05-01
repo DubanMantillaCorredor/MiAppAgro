@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mi_agro_app/Pages/algo.dart';
 import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
 import 'package:mi_agro_app/Resources/WidgetStyles.dart';
 import '../Controllers/LoginController.dart';
@@ -28,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-             
               Container(
                 margin: const EdgeInsets.all(10),
                 height: 350, // Altura de la imagen
@@ -57,7 +57,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 10),
                       const Text(
-                        
                         'Ingresa para continuar usando la app',
                         style: TextStyle(
                           fontSize: 15,
@@ -138,16 +137,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Container(
-              margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  FocusScope.of(context).unfocus(); // Oculta el teclado cuando se presiona el botón
-                  Navigator.pushNamed(context, '/home');
-                },
-                style: WidgetStyles.ButtonGreenColor,
-                child: Text(LabelConfiguration.init_Pages_Ini_Sesion),
-              ),
+                margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // FocusScope.of(context).unfocus(); // Oculta el teclado cuando se presiona el botón
+                    // Navigator.pushNamed(context, '/home');
+                    myFunction();
+                  },
+                  style: WidgetStyles.ButtonGreenColor,
+                  child: Text(LabelConfiguration.init_Pages_Ini_Sesion),
+                ),
               ),
               TextButton(
                 child: const Text(
@@ -157,13 +157,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 onPressed: () {
-                  FocusScope.of(context).unfocus(); // Oculta el teclado 
+                  FocusScope.of(context).unfocus(); // Oculta el teclado
                   Navigator.pushNamed(context, '/register');
                 },
               ),
               const SizedBox(height: 20), // Espacio adicional al final
-              
-              ],
+            ],
           ),
         ),
       ),
