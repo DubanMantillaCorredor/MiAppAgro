@@ -20,10 +20,6 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          FittedBox(
-            fit: BoxFit.fill,
-            child: Image.asset('lib/Resources/Images/F4V.png'),
-          ),
           Expanded(child: Container(
             padding: EdgeInsets.all(ViewConfiguration.PaddingContainer),
             child: Column(

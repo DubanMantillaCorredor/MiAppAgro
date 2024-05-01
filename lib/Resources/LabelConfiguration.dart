@@ -21,5 +21,4 @@ class LabelConfiguration{
   static String information_Instructions = "Instructivo ";
   static String information_Potato_Farming = "Cultivo de papa ";
   static String information_Onion_Farming = "Cultivo de cebolla ";
-  static String myFarming_create_new_farming_button = "Error";
 }

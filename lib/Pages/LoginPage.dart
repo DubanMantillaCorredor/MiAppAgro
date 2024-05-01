@@ -29,17 +29,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                margin: const EdgeInsets.all(10),
-                height: 350, // Altura de la imagen
-                width: 350,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('lib/Resources/Images/User.png'),
-                    fit: BoxFit.none,
-                  ),
-                ),
-              ),
+              SizedBox(height: 50),
+              Image.asset('lib/Resources/Images/User.png', height: 150),
+              SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                 child: Form(
@@ -77,18 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                         controller: _emailController,
                         decoration: const InputDecoration(
                           labelText: 'Correo electrónico',
-                          fillColor: Colors.transparent,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                          ),
-                          labelStyle: TextStyle(color: Colors.grey),
+
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -111,18 +92,6 @@ class _LoginPageState extends State<LoginPage> {
                         controller: _passwordController,
                         decoration: const InputDecoration(
                           labelText: 'Ingresa tu contraseña',
-                          fillColor: Colors.transparent,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                          ),
-                          labelStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -141,14 +110,24 @@ class _LoginPageState extends State<LoginPage> {
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () {
-                    FocusScope.of(context).unfocus(); // Oculta el teclado cuando se presiona el botón
-                    Navigator.pushNamed(context, '/home');
-                    myFunction();
+                    if (_formKey.currentState!.validate()){
+                      widget.controller.SendLogin(_emailController.text, _passwordController.text).then((value) {
+                        print("Trae");
+                        print(value);
+                        if(value == true){
+                          Navigator.pushNamed(context, '/home');
+                        }else{
+                          alerts();
+                        }
+                      }).catchError((error){
+                        alerts();
+                      });
+                    }
                   },
                   style: WidgetStyles.ButtonGreenColor,
                   child: Text(LabelConfiguration.init_Pages_Ini_Sesion),
                 ),
-              ),
+              )              ,
               TextButton(
                 child: const Text(
                   '¿Eres un nuevo usuario? Regístrate',
@@ -166,6 +145,25 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+
+  Future alerts (){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Atención'),
+            content: const Text('Usuario o contraseña incorrecta'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        }
     );
   }
 }

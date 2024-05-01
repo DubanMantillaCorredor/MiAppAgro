@@ -1,38 +1,35 @@
-import 'package:flutter/material.dart';
-import 'package:mi_agro_app/api/AuthAPI.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Asegúrate de importar el paquete necesario
+import 'dart:convert';
+import 'package:mi_agro_app/Models/ResponseHttpDto.dart';
+import 'package:mi_agro_app/Models/UserRegisterDto.dart';
+import 'package:mi_agro_app/Services/IUserService.dart';
+import 'package:mi_agro_app/Services/UserService.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late AuthAPI _authAPI;
   bool isRequest = false;
   bool thereWasRequest = false;
+  late IUserService _userService;
+  late Future<SharedPreferences> _prefs;
 
   LoginController() {
-    _authAPI = AuthAPI(); // Instancia de la clase AuthAPI
+    _userService = UserService();
+    _prefs = SharedPreferences.getInstance();
   }
 
-  Future<void> login(String email, String password, BuildContext context) async {
-    if (isRequest == true) {
-      return;
+  Future<bool> SendLogin(String email, String password) async {
+    UserRegisterDto user = UserRegisterDto(email, password);
+    final SharedPreferences prefs = await _prefs;
+    var json = jsonEncode(user.toJson());
+
+    try {
+      var value = await _userService.sendLogin(json);
+      await prefs.setString('user', value.data);
+      print("Valida 1");
+      return true;
+    } catch (error) {
+      print("Valida 2");
+      throw error;
     }
-
-    isRequest = true;
-
-    await _authAPI.login(email, password).then((response) {
-      try {
-        thereWasRequest = true;
-        if (response.statusCode == 200) {
-          Navigator.pushNamed(context, '/home'); // Utiliza el contexto proporcionado
-        } else {
-          // Mostrar mensaje de error al usuario
-          print('Error al iniciar sesión: ${response.body}');
-        }
-      } catch (e) {
-        print('Error al realizar la solicitud: $e');
-      }
-    }).onError((error, stackTrace) {
-      print('Error al realizar la solicitud: $error');
-    }).whenComplete(() => isRequest = false);
   }
+
 }

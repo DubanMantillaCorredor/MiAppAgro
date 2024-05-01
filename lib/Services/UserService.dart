@@ -1,25 +1,26 @@
 import 'dart:io';
 
 import 'package:mi_agro_app/Models/ResponseHttpDto.dart';
-import 'package:mi_agro_app/Services/IFieldDiaryService.dart';
-import 'package:mi_agro_app/Services/Service.dart';
+import 'package:mi_agro_app/Services/IUserService.dart';
 import 'package:http/http.dart' as http;
 
-class FieldDiaryService extends Service implements IFieldDiaryService {
+import 'Service.dart';
+
+class UserService extends Service implements IUserService {
   ResponseHttpDto responseHttpDto = ResponseHttpDto();
 
-  FieldDiaryService() {
-    setUrlRelative = "api/field_diaries";
+  UserService(){
+    setUrlRelative = "";
   }
 
   @override
-  Future<dynamic> syncData(String body) async {
-    String url = "$urlRelative/sync";
+  Future<dynamic> sendLogin(String body) async {
+    String url = "${urlRelative}login";
+
     try {
       var response = await http.post(Uri.parse(url),
           headers: {
-            "Content-Type": "application/json",
-            'Authorization': 'Bearer ${ await GetToken()}'
+            "Content-Type": "application/json"
           },
           body: body);
 
@@ -38,5 +39,6 @@ class FieldDiaryService extends Service implements IFieldDiaryService {
       responseHttpDto.responseType = ResponseType.NoInternet;
       throw responseHttpDto;
     }
+
   }
 }

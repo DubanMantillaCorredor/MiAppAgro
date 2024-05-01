@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
                 ),
               )),
         ),
-        initialRoute: '/home',
+        initialRoute: '/',
         routes: {
           '/': (context) => InitPage(controller: InitController()),
           '/login': (context) => LoginPage(controller: LoginController()),

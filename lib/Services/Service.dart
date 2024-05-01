@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import 'package:mi_agro_app/Models/LoginResponseDto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Service {
-  final String _urlBase = "http://192.168.1.67:3000";
+  final String _urlBase = "https://mi-app-agro-f8ace816d05c.herokuapp.com";
   String _urlRelative = "";
 
   set setUrlRelative(String url) {
@@ -12,7 +17,21 @@ class Service {
 
   Service(){}
 
-  String GetToken(){
-    return 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3ZDE4OWEyYS1kZWMxLTRiMzAtOWY1ZC0zYTIxZDhkYTg0YmIiLCJzdWIiOiJjMDg2NDE5Yy05Yzk5LTQ3ZDYtYTEyYS0xN2M5M2I0MTYyOTgiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE3MTQ1NDQ5MjQsImV4cCI6MTcxNzEzNjkyNH0.-aoJL1bBw0qY4Re0gi3R0kCqUaFduEPrRa62bBk5CaI';
+  Future<String> GetToken() async {
+    try {
+      final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+      final SharedPreferences prefs = await _prefs;
+      String json = prefs.getString("user") ?? "";
+
+      if (json == "") {
+        return "";
+      } else {
+        var user = LoginResponseDto.fromJson(
+            jsonDecode(prefs!.getString('user') ?? ''));
+        return user.token;
+      }
+    } catch (ex) {
+      return "";
+    }
   }
 }
