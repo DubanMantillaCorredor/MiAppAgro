@@ -33,7 +33,7 @@ class _MyFarmingPageState extends State<MyFarmingPage> {
                           "31bfea98-78cf-4515-9e8d-270db6a51641")),
                   Expanded(
                       child: farmingCard(
-                          "Cebola",
+                          "Cebolla",
                           "lib/Resources/Images/onion.png",
                           "a455ac77-03e6-4ae7-9dde-a1206850bd6a")),
                 ],
@@ -45,7 +45,7 @@ class _MyFarmingPageState extends State<MyFarmingPage> {
     );
   }
 
-  Widget farmingCard(String title, String image, String id) {
+  Widget farmingCard(String title, String image, String farming_id) {
     return Card(
       color: Colors.white,
       child: InkWell(
@@ -53,7 +53,7 @@ class _MyFarmingPageState extends State<MyFarmingPage> {
             Navigator.pushNamed(
                 context, '/cultivationDiary',
                 arguments: {
-                  "id": id,
+                  "farming_id": farming_id,
                   "title": title
                 }
             );

@@ -16,51 +16,91 @@ class FormNotesPage extends StatefulWidget {
 }
 
 class _FormNotesPageState extends State<FormNotesPage> {
+  final TextEditingController _titleInput = TextEditingController();
+  final TextEditingController _bodyInput = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String title = "";
+
+
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute
+        .of(context)
+        ?.settings
+        .arguments ?? <String, dynamic>{}) as Map;
+    widget.controller.farming_id = arguments['farming_id'] ?? "";
+    title = arguments['title'] ?? "";
+
     return Scaffold(
-      body: Column(
-        children: [
-          AppBarPage("Notas", context),
-          Column(
-            children: [
-              Text("Papa",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green.shade900)),
-               Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: const Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: TextField(
-                            maxLines: 8,
-                            keyboardType: TextInputType.multiline,
-                            decoration: InputDecoration.collapsed(hintText: "Escriba sus notas"),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Container(
+            child: ListView(
+              children: [
+                AppBarPage("Notas", context),
+                Center(
+                  child: Text(title,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green.shade900)),
+                ),
+                Form(
+                    key: _formKey,
+                    child:Container(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Titulo", style: TextStyle(fontSize: 16)),
+                          SizedBox(height: 10),
+                          TextFormField(
+                            controller: _titleInput,
+                            validator: (text){
+                              if (text == null || text.isEmpty) {
+                                return "*Debes ingresar un usuario";
+                              }
+                              return null;
+                            },
                           ),
-                        )
-                    ),
-                  ),
-                  Container(
-                    height: 60,
-                    width: double.maxFinite,
-                    margin: EdgeInsets.all(ViewConfiguration.PaddingContainer),
-                    child: ElevatedButton(
-                        onPressed: (){
-                        },
-                        style: WidgetStyles.ButtonSynchronize,
-                        child: Text(LabelConfiguration.save_button)),
-                  )
-                ],
-              )
-            ],
-          )
-        ],
-      ),
+                          SizedBox(height: 10),
+                          Container(
+                              color: Colors.white,
+                              child: TextFormField(
+                                controller: _bodyInput,
+                                maxLines: 8,
+                                keyboardType: TextInputType.multiline,
+                                decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.all(8.0),
+                                  hintText: "Escriba sus notas",
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                              )
+                          ),
+                          Container(
+                            height: 60,
+                            width: double.maxFinite,
+                            margin: EdgeInsets.all(ViewConfiguration.PaddingContainer),
+                            child: ElevatedButton (
+                                onPressed: () async{
+                                  if (_formKey.currentState!.validate()){
+                                    var result = await widget.controller.saveNote(_titleInput.text, _bodyInput.text);
+                                    Navigator.pop(context, true);
+                                  }
+                                },
+                                style: WidgetStyles.ButtonSynchronize,
+                                child: Text(LabelConfiguration.save_button)),
+                          )
+                        ],
+                      ),
+                    ))
+              ],
+            ),
+          ),
+        )
     );
   }
 }

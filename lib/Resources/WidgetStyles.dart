@@ -16,4 +16,11 @@ class WidgetStyles {
       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))
   );
 
+  static ButtonStyle ButtonDelete = ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+      elevation: MaterialStateProperty.all(5),
+      foregroundColor: MaterialStateProperty.all(Colors.white),
+      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))
+  );
+
 }

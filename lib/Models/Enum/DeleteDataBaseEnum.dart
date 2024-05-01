@@ -1,0 +1,4 @@
+enum DeleteDataBaseEnum{
+  enable,
+  disable
+}
