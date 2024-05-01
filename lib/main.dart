@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mi_agro_app/Controllers/CalculateFertilizerController.dart';
 import 'package:mi_agro_app/Controllers/MyFarming/DetailNoteController.dart';
 import 'package:mi_agro_app/Controllers/MyFarming/FormNoteComtroller.dart';
+import 'package:mi_agro_app/Controllers/SyncController.dart';
 import 'package:mi_agro_app/Pages/MyFarming/DetailNotePage.dart';
 import 'package:mi_agro_app/Pages/MyFarming/FormNotePage.dart';
+import 'package:mi_agro_app/Pages/SyncPage.dart';
 
 import 'Controllers/FarmingTypeController.dart';
 import 'Controllers/FertilizerTypeController.dart';
@@ -79,6 +81,8 @@ class MyApp extends StatelessWidget {
               FormNotesPage(controller: FormNoteController()),
           '/detailNote': (context) =>
               DetailNotePage(controller: DetailNoteController()),
+          '/sync': (context) =>
+              SyncPage(controller: SyncController()),
         });
   }
 }

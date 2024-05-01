@@ -35,6 +35,29 @@ class TodoDB {
     );
   }
 
+  Future<int> createRow(
+      {
+        required String id,
+        required String title,
+        required String body,
+        required String createdDate,
+        required String farming_id
+      }) async {
+    var uuid = Uuid();
+    final database = await DatabaseService().database;
+    return await database
+        .rawInsert('''INSERT INTO $tableName (id, title, body, date, farming_id, deleted) VALUES (?, ?, ?, ?, ?, ?)''',
+        [
+          id,
+          title,
+          body,
+          createdDate,
+          farming_id,
+          DeleteDataBaseEnum.enable.index
+        ]
+    );
+  }
+
   Future<List<Todo>> fetchAll() async {
     final database = await DatabaseService().database;
     final todos = await database.rawQuery('''SELECT * FROM $tableName;''');
@@ -65,5 +88,10 @@ class TodoDB {
       conflictAlgorithm: ConflictAlgorithm.rollback,
       whereArgs: [id]
     );
+  }
+
+  Future<void> delete() async {
+    final database = await DatabaseService().database;
+    await database.delete(tableName);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Controllers/HomeController.dart';
+import 'package:mi_agro_app/Controllers/HomeController.dart';
 import '../Resources/LabelConfiguration.dart';
 import '../Resources/WidgetStyles.dart';
 import 'ViewConfiguration.dart';
@@ -62,7 +62,9 @@ class _HomePageState extends State<HomePage> {
             width: double.maxFinite,
             margin: EdgeInsets.all(ViewConfiguration.PaddingContainer),
             child: ElevatedButton(
-                onPressed: null,
+                onPressed: (){
+                  Navigator.pushNamed(context, '/sync');
+                },
                 style: WidgetStyles.ButtonSynchronize,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
