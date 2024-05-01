@@ -141,8 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () {
-                    // FocusScope.of(context).unfocus(); // Oculta el teclado cuando se presiona el botón
-                    // Navigator.pushNamed(context, '/home');
+                    FocusScope.of(context).unfocus(); // Oculta el teclado cuando se presiona el botón
+                    Navigator.pushNamed(context, '/home');
                     myFunction();
                   },
                   style: WidgetStyles.ButtonGreenColor,
