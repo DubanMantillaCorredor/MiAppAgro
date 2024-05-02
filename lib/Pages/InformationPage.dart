@@ -48,7 +48,9 @@ class _InformationPageState extends State<InformationPage> {
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   height: 60,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/'),
+                    onPressed: () {
+                      //Navigator.pushNamed(context, '/');
+                    },
                     style: WidgetStyles.ButtonWhiteColor,
                     child: Text(LabelConfiguration.information_Instructions),
                 ),

@@ -6,6 +6,7 @@ import 'package:mi_agro_app/Controllers/SyncController.dart';
 import 'package:mi_agro_app/Pages/MyFarming/DetailNotePage.dart';
 import 'package:mi_agro_app/Pages/MyFarming/FormNotePage.dart';
 import 'package:mi_agro_app/Pages/SyncPage.dart';
+import 'package:mi_agro_app/config/theme/app_theme.dart';
 
 import 'Controllers/FarmingTypeController.dart';
 import 'Controllers/FertilizerTypeController.dart';
@@ -42,22 +43,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Mi Agro App',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xFFE2F3F0),
-          useMaterial3: true,
-          inputDecorationTheme: InputDecorationTheme(
-              filled: true,
-              fillColor: Colors.white,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Colors.grey, width: 1),
-              ),
-              errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.red, width: 1
-                ),
-              )),
-        ),
+        theme: AppTheme().getTheme(),
         initialRoute: '/',
         routes: {
           '/': (context) => InitPage(controller: InitController()),
@@ -75,9 +61,9 @@ class MyApp extends StatelessWidget {
               controller: CalculateFertilizerController()),
           '/information': (context) =>
               InformationPage(controller: InformationController()),
-          '/farmingType ': (context) =>
-              FarmingTypePage(controller: FarmingTypeController()),
           '/farmingType': (context) =>
+              FarmingTypePage(controller: FarmingTypeController()),
+          '/fertilizerType': (context) =>
               FertilizerTypePage(controller: FertilizerTypeController()),
           '/formNote': (context) =>
               FormNotesPage(controller: FormNoteController()),

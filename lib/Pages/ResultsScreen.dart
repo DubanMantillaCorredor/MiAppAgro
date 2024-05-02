@@ -20,15 +20,27 @@ class ResultsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            title: Text('Valor del nitrógeno calculado: $nitrogenValue'),
+            title: Text('Cantidad de Urea requerida: $nitrogenValue Kg'),
           ),
           ...nutrientValues.entries.map((entry) {
             return ListTile(
-              title: Text('Valor de ${entry.key} calculado: ${entry.value}'),
+              title: Text('Cantidad de ${_castName(entry.key)} requerido: ${entry.value} Kg'),
             );
           }).toList(),
         ],
       ),
     );
   }
+
+  String _castName(String name) {
+    switch(name) {
+      case 'Fosforo': return "Superfosfato triple";
+      case 'Potasio': return "Cloruro de potasio";
+      case 'Calcio': return "Cal viva";
+      case 'Azufre': return "Volcan S-90";
+      case 'Magnesio': return "Sili-Magnesio";
+    }
+    return '';
+  }
+
 }

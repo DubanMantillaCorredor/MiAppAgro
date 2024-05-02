@@ -15,6 +15,13 @@ class InitPage extends StatefulWidget {
 class _InitPageState extends State<InitPage> {
   @override
   Widget build(BuildContext context) {
+
+    widget.controller.isLoggedIn().then((value) {
+      if(value) {
+        Navigator.pushNamed(context, '/home');
+      }
+    });
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(

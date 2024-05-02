@@ -14,14 +14,23 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _nombreController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    const border = OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.transparent),
+    );
+
+    const textFieldDecoration = InputDecoration(
+      fillColor: Colors.transparent,
+      filled: true,
+      border: border,
+      enabledBorder: border,
+      focusedBorder: border,
+      labelStyle: TextStyle(color: Colors.grey),
+    );
+
     return GestureDetector(
       onTap: () {
         // Ocultar teclado cuando se toca fuera de los campos de entrada
@@ -31,7 +40,9 @@ class _RegisterPageState extends State<RegisterPage> {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 50, 30, 10),
-            child: Column(
+            child: Form(
+              key: widget.controller.formKey,
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 20),
@@ -46,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Ingresa tu informacion personal',
+                  'Ingresa tu información personal',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 20,
@@ -64,22 +75,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 TextFormField(
-                  controller: _nombreController,
-                  decoration: const InputDecoration(
-                    labelText: 'Ingresa tu nombre',
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey),
-                  ),
+                  controller: widget.controller.nombreController,
+                  decoration: textFieldDecoration.copyWith(labelText: 'Ingresa tu nombre'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, ingresa tu nombre';
@@ -98,22 +95,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 TextFormField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Correo electrónico',
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey),
-                  ),
+                  controller: widget.controller.emailController,
+                  decoration: textFieldDecoration.copyWith(labelText: 'Correo electrónico'),
+                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, ingrese su correo electrónico';
@@ -132,22 +116,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 TextFormField(
-                  controller: _passwordController,
-                  decoration: const InputDecoration(
-                    labelText: 'Crea tu contraseña',
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey),
-                  ),
+                  controller: widget.controller.passwordController,
+                  decoration: textFieldDecoration.copyWith(labelText: 'Crea tu contraseña'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, ingrese tu contraseña';
@@ -166,26 +136,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 TextFormField(
-                  controller: _confirmPasswordController,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirma tu contraseña',
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey),
-                  ),
+                  controller: widget.controller.confirmPasswordController,
+                  decoration: textFieldDecoration.copyWith(labelText: 'Confirma tu contraseña'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, confirma tu contraseña';
-                    } else if (value != _passwordController.text) {
+                    } else if (value != widget.controller.passwordController.text) {
                       return 'Las contraseñas no coinciden';
                     }
                     return null;
@@ -197,9 +153,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      // FocusScope.of(context).unfocus();
-                      // Navigator.pushNamed(context, '/login');
-                      myFunction();
+                      widget.controller.register().then((value) {
+                        Navigator.pushNamed(context, '/home');
+                      }).catchError((error){
+                        alerts();
+                      });
                     },
                     style: WidgetStyles.ButtonGreenColor,
                     child: Text(LabelConfiguration.init_Pages_Register),
@@ -208,9 +166,28 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 20),
               ],
             ),
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  Future alerts (){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Atención'),
+            content: const Text('Este correo ya se encuentra registrado'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        }
     );
   }
 }

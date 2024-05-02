@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 5),
                       TextFormField(
                         controller: _passwordController,
+                        obscureText: true,
                         decoration: const InputDecoration(
                           labelText: 'Ingresa tu contraseña',
                         ),

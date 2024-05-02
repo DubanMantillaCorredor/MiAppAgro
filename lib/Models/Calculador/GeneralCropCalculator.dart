@@ -13,7 +13,7 @@ class PapaCalculadora extends Calculator {
           'Potasio': 350,
           'Calcio': 150,
           'Azufre': 70,
-          'Magnesion': 70,
+          'Magnesio': 70,
         });
 }
 
@@ -25,6 +25,6 @@ class CebollaCalculadora extends Calculator {
           'Potasio': 200,
           'Calcio': 100,
           'Azufre': 30,
-          'Magnesion': 70,
+          'Magnesio': 70,
         });
 }

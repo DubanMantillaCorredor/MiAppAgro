@@ -24,12 +24,12 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
   late Calculator? selectedCalculator;
 
   final Map<String, double> nutrientValues = {
-    'Nitrogeno': 0.0,
+    'Nitrógeno': 0.0,
     'Fosforo': 0.0,
     'Potasio': 0.0,
     'Calcio': 0.0,
     'Azufre': 0.0,
-    'Magnesion': 0.0,
+    'Magnesio': 0.0,
   };
 
   final TextEditingController densityController = TextEditingController();
@@ -120,7 +120,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
                   });
                 },
                 decoration: InputDecoration(
-                  labelText: 'Densidad del fertilizante (kg/L)',
+                  labelText: 'Densidad Aparente (g/cm3)',
                   labelStyle: const TextStyle(color: Colors.green),
                   contentPadding: const EdgeInsets.all(16.0),
                   border: OutlineInputBorder(
@@ -174,7 +174,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
   double calculateNitrogen(double userNitrogenInput, double userDensityInput,
       double selectedCropDepth) {
     double baseNitrogenValue =
-        selectedCalculator?.nutrientValues['Nitrogeno'] ?? 0.0;
+        selectedCalculator?.nutrientValues['Nitrógeno'] ?? 0.0;
     double result = baseNitrogenValue -
         (userNitrogenInput * userDensityInput * selectedCropDepth * 1000);
     return result;
@@ -182,7 +182,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   double? calculateNutrient(double userInput, double userDensityInput,
       double selectedCropDepth, double baseNutrientValue, String nutrientName) {
-    if (nutrientName == 'Nitrogeno') {
+    if (nutrientName == 'Nitrógeno') {
       return null;
     } else {
       double result = baseNutrientValue -
@@ -196,18 +196,18 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   double realizarOperacion(String nutrientName, double value) {
     switch (nutrientName) {
-      case 'Nitrogeno':
-        return ((100 * value) / 46).ceilToDouble();
+      case 'Nitrógeno':
+        return ((100 * value) / 46).roundToDouble();
       case 'Fosforo':
-        return ((100 * value) / 46).ceilToDouble();
+        return ((100 * value) / 46).roundToDouble();
       case 'Potasio':
-        return ((100 * value) / 60).ceilToDouble();
+        return ((100 * value) / 60).roundToDouble();
       case 'Calcio':
-        return ((100 * value) / 68).ceilToDouble();
+        return ((100 * value) / 68).roundToDouble();
       case 'Azufre':
-        return ((100 * value) / 90).ceilToDouble();
-      case 'Magnesion':
-        return ((100 * value) / 32).ceilToDouble();
+        return ((100 * value) / 90).roundToDouble();
+      case 'Magnesio':
+        return ((100 * value) / 32).roundToDouble();
       default:
         return value;
     }
@@ -215,13 +215,13 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   void calcularYMostrarResultados() {
     double nitrogenValue = calculateNitrogen(
-      nutrientValues['Nitrogeno'] ?? 0.0,
+      nutrientValues['Nitrógeno'] ?? 0.0,
       fertilizerDensity,
       selectedCalculator!.profundidadCultivo,
     );
 
     double modifiedNitrogenValue =
-        realizarOperacion('Nitrogeno', nitrogenValue);
+        realizarOperacion('Nitrógeno', nitrogenValue);
 
     Map<String, double> calculatedNutrients = {};
     nutrientValues.forEach((key, value) {
@@ -247,7 +247,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
       context,
       MaterialPageRoute(
         builder: (context) => ResultsScreen(
-          nitrogenValue: modifiedNitrogenValue,
+          nitrogenValue: (modifiedNitrogenValue < 0) ? 0 : modifiedNitrogenValue,
           nutrientValues: calculatedNutrients,
         ),
       ),
