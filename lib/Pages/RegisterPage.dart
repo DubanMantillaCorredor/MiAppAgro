@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mi_agro_app/Pages/algo.dart';
 import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
 import 'package:mi_agro_app/Resources/WidgetStyles.dart';
 import '../Controllers/RegisterController.dart';
@@ -29,6 +28,12 @@ class _RegisterPageState extends State<RegisterPage> {
       enabledBorder: border,
       focusedBorder: border,
       labelStyle: TextStyle(color: Colors.grey),
+    );
+
+    const textStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 25,
+      color: Color(0xff1b4931),
     );
 
     return GestureDetector(
@@ -66,13 +71,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Usuario',
+                  'Nombre',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: Color(0xff1b4931),
-                  ),
+                  style: textStyle,
                 ),
                 TextFormField(
                   controller: widget.controller.nombreController,
@@ -86,13 +87,25 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
+                  'Apellido',
+                  textAlign: TextAlign.left,
+                  style: textStyle,
+                ),
+                TextFormField(
+                  controller: widget.controller.apellidoController,
+                  decoration: textFieldDecoration.copyWith(labelText: 'Ingresa tu apellido'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingresa tu apellido';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                const Text(
                   'Email',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: Color(0xff1b4931),
-                  ),
+                  style: textStyle,
                 ),
                 TextFormField(
                   controller: widget.controller.emailController,
@@ -109,11 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const Text(
                   'Contraseña',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: Color(0xff1b4931),
-                  ),
+                  style: textStyle,
                 ),
                 TextFormField(
                   controller: widget.controller.passwordController,
@@ -129,11 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const Text(
                   'Confirma tu contraseña',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: Color(0xff1b4931),
-                  ),
+                  style: textStyle,
                 ),
                 TextFormField(
                   controller: widget.controller.confirmPasswordController,

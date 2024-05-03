@@ -16,6 +16,7 @@ class RegisterController {
 
   final formKey = GlobalKey<FormState>();
   final nombreController = TextEditingController();
+  final apellidoController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -37,7 +38,7 @@ class RegisterController {
       final password = passwordController.text;
 
       await _registerAPI.register(
-          nombreController.text, email, password)
+          nombreController.text,apellidoController.text, email, password)
           .then((response) async {
         try {
           thereWasRequest = true;

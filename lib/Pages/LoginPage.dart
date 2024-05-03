@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mi_agro_app/Pages/algo.dart';
 import 'package:mi_agro_app/Resources/LabelConfiguration.dart';
 import 'package:mi_agro_app/Resources/WidgetStyles.dart';
 import '../Controllers/LoginController.dart';

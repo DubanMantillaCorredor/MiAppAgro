@@ -31,11 +31,12 @@ class RegisterAPI {
   String registerPath = BaseAPI.base + "/signup";
 
   Future<http.Response> register(
-      String nombre, String email, String password) async {
+      String nombre, String apellido,String email, String password) async {
     try {
       final data = jsonEncode({
         "user": {
-          "nombre": nombre,
+          "first_name": nombre,
+          "last_name": apellido,
           "email": email,
           "password": password,
         }
@@ -57,6 +58,7 @@ class RegisterController {
 
   final _formKey = GlobalKey<FormState>();
   final _nombreController = TextEditingController();
+  final _apellidoController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -73,7 +75,7 @@ class RegisterController {
     isRequest = true;
 
     await _registerAPI
-        .register(_nombreController.text, _emailController.text,
+        .register(_nombreController.text, _apellidoController.text, _emailController.text,
             _passwordController.text)
         .then((response) {
       try {
