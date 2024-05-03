@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Inicio De sesión',
+                        'Inicio de sesión',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,

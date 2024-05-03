@@ -159,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       widget.controller.register().then((value) {
-                        Navigator.pushNamed(context, '/home');
+                        alertsSuccess();
                       }).catchError((error){
                         alerts();
                       });
@@ -188,6 +188,27 @@ class _RegisterPageState extends State<RegisterPage> {
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        }
+    );
+  }
+
+  Future alertsSuccess(){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Atención'),
+            content: const Text('Se ha registrado correctamente'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context, 'OK');
+                  Navigator.pushNamed(context, '/login');
+                },
                 child: const Text('OK'),
               ),
             ],

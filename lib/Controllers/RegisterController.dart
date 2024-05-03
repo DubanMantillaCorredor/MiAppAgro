@@ -43,7 +43,7 @@ class RegisterController {
         try {
           thereWasRequest = true;
           if (response.statusCode == 201) {
-            UserRegisterDto user = UserRegisterDto(email, password);
+            /*UserRegisterDto user = UserRegisterDto(email, password);
             final SharedPreferences prefs = await _prefs;
             var json = jsonEncode(user.toJson());
 
@@ -52,7 +52,8 @@ class RegisterController {
               await prefs.setString('user', value.data);
             } catch (error) {
               throw error;
-            }
+            }*/
+            print('Registro exitoso: ${response.body}');
           } else {
             print('Error al registrarse: ${response.body}');
           }
