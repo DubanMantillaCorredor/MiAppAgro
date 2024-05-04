@@ -24,7 +24,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
   late Calculator? selectedCalculator;
 
   final Map<String, double> nutrientValues = {
-    'Nitrógeno': 0.0,
+    'Nitrogeno': 0.0,
     'Fosforo': 0.0,
     'Potasio': 0.0,
     'Calcio': 0.0,
@@ -137,7 +137,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
                     selectedCalculator = value == null
                         ? null
                         : calculators.firstWhere((calculator) =>
-                            calculator['value'] == value)['calculator'];
+                    calculator['value'] == value)['calculator'];
                     selectedCropText = selectedCalculator == null
                         ? 'Seleccionar cultivo'
                         : selectedCalculator.toString();
@@ -146,9 +146,9 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
                 items: calculators
                     .map<DropdownMenuItem<double>>(
                         (calculator) => DropdownMenuItem<double>(
-                              value: calculator['value'],
-                              child: Text(calculator['name']),
-                            ))
+                      value: calculator['value'],
+                      child: Text(calculator['name']),
+                    ))
                     .toList(),
               ),
               const SizedBox(height: 16.0),
@@ -174,7 +174,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
   double calculateNitrogen(double userNitrogenInput, double userDensityInput,
       double selectedCropDepth) {
     double baseNitrogenValue =
-        selectedCalculator?.nutrientValues['Nitrógeno'] ?? 0.0;
+        selectedCalculator?.nutrientValues['Nitrogeno'] ?? 0.0;
     double result = baseNitrogenValue -
         (userNitrogenInput * userDensityInput * selectedCropDepth * 1000);
     return result;
@@ -182,7 +182,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   double? calculateNutrient(double userInput, double userDensityInput,
       double selectedCropDepth, double baseNutrientValue, String nutrientName) {
-    if (nutrientName == 'Nitrógeno') {
+    if (nutrientName == 'Nitrogeno') {
       return null;
     } else {
       double result = baseNutrientValue -
@@ -196,7 +196,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   double realizarOperacion(String nutrientName, double value) {
     switch (nutrientName) {
-      case 'Nitrógeno':
+      case 'Nitrogeno':
         return ((100 * value) / 46).roundToDouble();
       case 'Fosforo':
         return ((100 * value) / 46).roundToDouble();
@@ -215,13 +215,13 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
 
   void calcularYMostrarResultados() {
     double nitrogenValue = calculateNitrogen(
-      nutrientValues['Nitrógeno'] ?? 0.0,
+      nutrientValues['Nitrogeno'] ?? 0.0,
       fertilizerDensity,
       selectedCalculator!.profundidadCultivo,
     );
 
     double modifiedNitrogenValue =
-        realizarOperacion('Nitrógeno', nitrogenValue);
+    realizarOperacion('Nitrogeno', nitrogenValue);
 
     Map<String, double> calculatedNutrients = {};
     nutrientValues.forEach((key, value) {
@@ -238,7 +238,7 @@ class _CalculateFertilizerPageState extends State<CalculateFertilizerPage> {
       }
     });
 
-    print('Valor de nitrógeno modificado: $modifiedNitrogenValue');
+    print('Valor de nitrogeno modificado: $modifiedNitrogenValue');
     calculatedNutrients.forEach((key, value) {
       print('Valor de $key modificado: $value');
     });

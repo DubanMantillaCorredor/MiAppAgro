@@ -2,12 +2,12 @@ import 'Calculator.dart';
 
 class CebollaCalculadora extends Calculator{
   CebollaCalculadora(){
-    azufre = 30;
+    azufre = 50;
     calsio = 100;
-    fosforo = 150;
-    magnesio = 70;
-    nitrogeno = 200;
-    potasio = 200;
+    fosforo = 90;
+    magnesio = 30;
+    nitrogeno = 120;
+    potasio = 150;
     produndidadCultivo = 0.10;
   }
 }

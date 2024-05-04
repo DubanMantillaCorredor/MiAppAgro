@@ -8,23 +8,23 @@ abstract class Calculator {
 class PapaCalculadora extends Calculator {
   PapaCalculadora()
       : super(profundidadCultivo: 0.25, nutrientValues: {
-          'Nitrogeno': 350,
+          'Nitrogeno': 250,
           'Fosforo': 150,
-          'Potasio': 350,
-          'Calcio': 150,
-          'Azufre': 70,
-          'Magnesio': 70,
+          'Potasio': 250,
+          'Calcio': 100,
+          'Azufre': 60,
+          'Magnesio': 60,
         });
 }
 
 class CebollaCalculadora extends Calculator {
   CebollaCalculadora()
       : super(profundidadCultivo: 0.10, nutrientValues: {
-          'Nitrogeno': 200,
-          'Fosforo': 150,
-          'Potasio': 200,
+          'Nitrogeno': 120,
+          'Fosforo': 90,
+          'Potasio': 150,
           'Calcio': 100,
-          'Azufre': 30,
-          'Magnesio': 70,
+          'Azufre': 50,
+          'Magnesio': 30,
         });
 }

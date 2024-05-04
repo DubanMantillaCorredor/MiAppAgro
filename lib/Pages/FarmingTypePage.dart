@@ -61,12 +61,12 @@ class _FarmingTypePageState extends State<FarmingTypePage> {
                       _showInfoDialog(
                         "Requerimientos Nutricionales Papa",
                         "Nutriente\t           Rango(kg/ha)\n"
-                        "Nitrógeno (N)\t         350\n"
+                        "Nitrógeno (N)\t         250\n"
                         "Fósforo (P)(P2O5)\t     150\n"
-                        "Potasio (K)\t           350\n"
-                        "Calcio (Ca)/(CaO)\t     150\n"
-                        "Magnesio (Mg)\t         70\n"
-                        "Azufre (S)\t            70\n"
+                        "Potasio (K)\t           250\n"
+                        "Calcio (Ca)/(CaO)\t     100\n"
+                        "Magnesio (Mg)\t         60\n"
+                        "Azufre (S)\t            60\n"
                         "PROFUNDIDAD DE CULTIVO    0.25 m.",
                       );
                     },
@@ -100,12 +100,12 @@ class _FarmingTypePageState extends State<FarmingTypePage> {
                       _showInfoDialog(
                         "Requerimientos Nutricionales Cebolla Cabezona",
                         "Nutriente\t           Rango(kg/ha)\n"
-                        "Nitrógeno (N)\t        	200\n"
-                        "Fósforo (P)(P2O5)\t	    150\n"
-                        "Potasio (K)\t          	200\n"
+                        "Nitrógeno (N)\t        	120\n"
+                        "Fósforo (P)(P2O5)\t	    90\n"
+                        "Potasio (K)\t          	150\n"
                         "Calcio (Ca)(CaO)\t	      100\n"
-                        "Magnesio (Mg)\t	        70\n"
-                        "Azufre (S)\t           	30\n",
+                        "Magnesio (Mg)\t	        30\n"
+                        "Azufre (S)\t           	50\n",
                       );
                     },
                     style: WidgetStyles.ButtonTypeFarming,

@@ -54,13 +54,13 @@ class _FormNotesPageState extends State<FormNotesPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Titulo", style: TextStyle(fontSize: 16)),
+                          Text("Título", style: TextStyle(fontSize: 16)),
                           SizedBox(height: 10),
                           TextFormField(
                             controller: _titleInput,
                             validator: (text){
                               if (text == null || text.isEmpty) {
-                                return "*Debes ingresar un usuario";
+                                return "*Debes ingresar un título";
                               }
                               return null;
                             },
